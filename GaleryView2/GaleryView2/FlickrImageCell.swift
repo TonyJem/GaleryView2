@@ -1,5 +1,5 @@
 import UIKit
 
-class FlickrPhotoCell: UICollectionViewCell {
+class FlickrImageCell: UICollectionViewCell {
   @IBOutlet weak var imageView: UIImageView!
 }

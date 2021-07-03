@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Flickr Photos View Controller-->
+        <!--Image Collection View Controller-->
         <scene sceneID="jTt-cn-phz">
             <objects>
-                <collectionViewController id="uSH-PT-Kpi" customClass="FlickrPhotosViewController" customModule="GaleryView2" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="uSH-PT-Kpi" customClass="ImageCollectionViewController" customModule="GaleryView2" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="2b2-6e-uVt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -23,7 +23,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FlickrCell" id="rFq-gE-21U" customClass="FlickrPhotoCell" customModule="GaleryView2" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ImageCell" id="rFq-gE-21U" customClass="FlickrImageCell" customModule="GaleryView2" customModuleProvider="target">
                                 <rect key="frame" x="87.5" y="0.0" width="200" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -54,7 +54,7 @@
                     <navigationItem key="navigationItem" id="JJu-9r-C0y">
                         <nil key="title"/>
                         <textField key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" textAlignment="natural" minimumFontSize="17" id="eX9-wA-pbn">
-                            <rect key="frame" x="88" y="5" width="200" height="34"/>
+                            <rect key="frame" x="87.5" y="5" width="200" height="34"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" returnKeyType="search"/>
@@ -62,8 +62,15 @@
                                 <outlet property="delegate" destination="uSH-PT-Kpi" id="6Up-yf-5Ab"/>
                             </connections>
                         </textField>
+                        <barButtonItem key="rightBarButtonItem" title="Clear" id="bD2-Ge-TbU">
+                            <connections>
+                                <action selector="clearSearchButtonAction:" destination="uSH-PT-Kpi" id="FG0-fj-Yky"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="clearSearchButton" destination="bD2-Ge-TbU" id="nFv-pD-QWo"/>
+                        <outlet property="searchTextField" destination="eX9-wA-pbn" id="Fc6-A7-daz"/>
                         <segue destination="trg-yI-fsu" kind="show" identifier="showImageDetailsVC" id="s03-16-nXP"/>
                     </connections>
                 </collectionViewController>
