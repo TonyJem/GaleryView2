@@ -1,4 +1,4 @@
 # GaleryView2
  iOShkilfactory Hackaton task
  
- <img src="/readMeImages/screen02.gif" width="33%">
+ <img src="/readmeImages/demoView.gif" width="33%">
