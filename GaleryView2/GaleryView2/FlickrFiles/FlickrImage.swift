@@ -54,26 +54,6 @@ class FlickrImage: Equatable {
         .resume()
     }
     
-    func sizeToFillWidth(of size: CGSize) -> CGSize {
-        guard let thumbnail = thumbnail else {
-            return size
-        }
-        
-        let imageSize = thumbnail.size
-        var returnSize = size
-        
-        let aspectRatio = imageSize.width / imageSize.height
-        
-        returnSize.height = returnSize.width / aspectRatio
-        
-        if returnSize.height > size.height {
-            returnSize.height = size.height
-            returnSize.width = size.height * aspectRatio
-        }
-        
-        return returnSize
-    }
-    
     static func == (lhs: FlickrImage, rhs: FlickrImage) -> Bool {
         return lhs.photoID == rhs.photoID
     }
