@@ -19,6 +19,7 @@ class ImageDetailsViewController: UIViewController {
             detailedImageView.image = flickrImage?.largeImage
             return
         }
+        
         activityIndicator.startAnimating()
         detailedImageView.image = flickrImage?.thumbnail
         
