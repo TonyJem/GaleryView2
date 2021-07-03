@@ -8,7 +8,7 @@ class Flickr {
         case generic
     }
     
-    func searchFlickr(for searchText: String, completion: @escaping (Result<FlickrSearchResults, Swift.Error>) -> Void) {
+    func searchFlickr(for searchText: String, completion: @escaping (Result<FlickrSearchResult, Swift.Error>) -> Void) {
         guard let searchURL = flickrSearchURL(for: searchText) else {
             completion(.failure(Error.unknownAPIResponse))
             return
@@ -51,7 +51,7 @@ class Flickr {
                 }
                 
                 let flickrPhotos = self.getPhotos(photoData: photosReceived)
-                let searchResults = FlickrSearchResults(searchText: searchText, searchResults: flickrPhotos)
+                let searchResults = FlickrSearchResult(searchText: searchText, filteredImages: flickrPhotos)
                 completion(.success(searchResults))
             } catch {
                 completion(.failure(error))

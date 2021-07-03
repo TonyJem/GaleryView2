@@ -7,7 +7,7 @@ final class ImageCollectionViewController: UICollectionViewController {
     
     private let reuseIdentifier = "ImageCell"
     private let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
-    private var searches: [FlickrSearchResults] = []
+    private var searchResult = FlickrSearchResult(searchText: "", filteredImages: [])
     private let flickr = Flickr()
     private let itemsPerRow: CGFloat = 3
     
@@ -28,11 +28,11 @@ final class ImageCollectionViewController: UICollectionViewController {
 // MARK: - Private
 private extension ImageCollectionViewController {
     func image(for indexPath: IndexPath) -> FlickrImage {
-        return searches[indexPath.section].searchResults[indexPath.row]
+        return searchResult.filteredImages[indexPath.row]
     }
     
     func clearUI() {
-        searches = []
+        searchResult = FlickrSearchResult(searchText: "", filteredImages: [])
         collectionView?.reloadData()
         searchTextField.text = nil
         searchTextField.resignFirstResponder()
@@ -54,19 +54,19 @@ extension ImageCollectionViewController: UITextFieldDelegate {
         activityIndicator.frame = textField.bounds
         activityIndicator.startAnimating()
         
-        flickr.searchFlickr(for: text) { searchResults in
+        flickr.searchFlickr(for: text) { searchResult in
             DispatchQueue.main.async {
                 activityIndicator.removeFromSuperview()
                 
-                switch searchResults {
+                switch searchResult {
                 case .failure(let error) :
                     print("🔴 Error Searching: \(error)")
-                case .success(let results):
+                case .success(let result):
                     print("""
-              🟢 Found \(results.searchResults.count) \
-              matching \(results.searchText)
+              🟢 Found \(result.filteredImages.count) \
+              matching \(result.searchText)
               """)
-                    self.searches.insert(results, at: 0)
+                    self.searchResult = result
                     self.collectionView?.reloadData()
                 }
             }
@@ -78,12 +78,9 @@ extension ImageCollectionViewController: UITextFieldDelegate {
 
 // MARK: - CollectionView DataSource
 extension ImageCollectionViewController {
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return searches.count
-    }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return searches[section].searchResults.count
+        return searchResult.filteredImages.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
