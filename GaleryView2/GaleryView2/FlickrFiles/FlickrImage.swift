@@ -1,6 +1,6 @@
 import UIKit
 
-class FlickrPhoto: Equatable {
+class FlickrImage: Equatable {
   var thumbnail: UIImage?
   var largeImage: UIImage?
   let photoID: String
@@ -24,7 +24,7 @@ class FlickrPhoto: Equatable {
     case noData
   }
 
-  func loadLargeImage(_ completion: @escaping (Result<FlickrPhoto, Swift.Error>) -> Void) {
+  func loadLargeImage(_ completion: @escaping (Result<FlickrImage, Swift.Error>) -> Void) {
     guard let loadURL = flickrImageURL("b") else {
       DispatchQueue.main.async {
         completion(.failure(Error.invalidURL))
@@ -74,7 +74,7 @@ class FlickrPhoto: Equatable {
     return returnSize
   }
 
-  static func == (lhs: FlickrPhoto, rhs: FlickrPhoto) -> Bool {
+  static func == (lhs: FlickrImage, rhs: FlickrImage) -> Bool {
     return lhs.photoID == rhs.photoID
   }
 }

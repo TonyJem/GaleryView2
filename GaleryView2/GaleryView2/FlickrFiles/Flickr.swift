@@ -67,8 +67,8 @@ class Flickr {
     .resume()
   }
 
-  private func getPhotos(photoData: [[String: AnyObject]]) -> [FlickrPhoto] {
-    let photos: [FlickrPhoto] = photoData.compactMap { photoObject in
+  private func getPhotos(photoData: [[String: AnyObject]]) -> [FlickrImage] {
+    let photos: [FlickrImage] = photoData.compactMap { photoObject in
       guard
         let photoID = photoObject["id"] as? String,
         let farm = photoObject["farm"] as? Int ,
@@ -78,7 +78,7 @@ class Flickr {
         return nil
       }
 
-      let flickrPhoto = FlickrPhoto(photoID: photoID, farm: farm, server: server, secret: secret)
+      let flickrPhoto = FlickrImage(photoID: photoID, farm: farm, server: server, secret: secret)
 
       guard
         let url = flickrPhoto.flickrImageURL(),

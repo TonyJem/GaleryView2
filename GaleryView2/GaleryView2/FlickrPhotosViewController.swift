@@ -11,7 +11,7 @@ final class FlickrPhotosViewController: UICollectionViewController {
 
 // MARK: - Private
 private extension FlickrPhotosViewController {
-  func photo(for indexPath: IndexPath) -> FlickrPhoto {
+  func photo(for indexPath: IndexPath) -> FlickrImage {
     return searches[indexPath.section].searchResults[indexPath.row]
   }
 }
@@ -25,7 +25,7 @@ extension FlickrPhotosViewController: UITextFieldDelegate {
     else { return true }
 
     // 1
-    let activityIndicator = UIActivityIndicatorView(style: .gray)
+    let activityIndicator = UIActivityIndicatorView(style: .medium)
     textField.addSubview(activityIndicator)
     activityIndicator.frame = textField.bounds
     activityIndicator.startAnimating()
