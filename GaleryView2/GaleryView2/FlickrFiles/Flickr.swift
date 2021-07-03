@@ -8,8 +8,8 @@ class Flickr {
         case generic
     }
     
-    func searchFlickr(for searchTerm: String, completion: @escaping (Result<FlickrSearchResults, Swift.Error>) -> Void) {
-        guard let searchURL = flickrSearchURL(for: searchTerm) else {
+    func searchFlickr(for searchText: String, completion: @escaping (Result<FlickrSearchResults, Swift.Error>) -> Void) {
+        guard let searchURL = flickrSearchURL(for: searchText) else {
             completion(.failure(Error.unknownAPIResponse))
             return
         }
@@ -51,7 +51,7 @@ class Flickr {
                 }
                 
                 let flickrPhotos = self.getPhotos(photoData: photosReceived)
-                let searchResults = FlickrSearchResults(searchTerm: searchTerm, searchResults: flickrPhotos)
+                let searchResults = FlickrSearchResults(searchText: searchText, searchResults: flickrPhotos)
                 completion(.success(searchResults))
             } catch {
                 completion(.failure(error))
@@ -86,12 +86,12 @@ private extension Flickr {
         return photos
     }
     
-    func flickrSearchURL(for searchTerm: String) -> URL? {
-        guard let escapedTerm = searchTerm.addingPercentEncoding(withAllowedCharacters: CharacterSet.alphanumerics) else {
+    func flickrSearchURL(for searchText: String) -> URL? {
+        guard let escapedText = searchText.addingPercentEncoding(withAllowedCharacters: CharacterSet.alphanumerics) else {
             return nil
         }
         
-        let URLString = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=\(apiKey)&text=\(escapedTerm)&per_page=20&format=json&nojsoncallback=1"
+        let URLString = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=\(apiKey)&text=\(escapedText)&per_page=20&format=json&nojsoncallback=1"
         return URL(string: URLString)
     }
 }

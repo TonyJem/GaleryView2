@@ -35,4 +35,3 @@ class ImageDetailsViewController: UIViewController {
         }
     }
 }
-

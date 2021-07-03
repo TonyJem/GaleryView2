@@ -64,7 +64,7 @@ extension ImageCollectionViewController: UITextFieldDelegate {
                 case .success(let results):
                     print("""
               🟢 Found \(results.searchResults.count) \
-              matching \(results.searchTerm)
+              matching \(results.searchText)
               """)
                     self.searches.insert(results, at: 0)
                     self.collectionView?.reloadData()
