@@ -69,13 +69,13 @@
 				3A5F2B1526909586004BE8B5 /* FlickrFiles */,
 				3A5F2AF4269093EA004BE8B5 /* AppDelegate.swift */,
 				3A5F2AF6269093EA004BE8B5 /* SceneDelegate.swift */,
-				3A5F2AF8269093EA004BE8B5 /* ImageDetailsViewController.swift */,
 				3A5F2AFA269093EA004BE8B5 /* Main.storyboard */,
+				3A5F2B1826909693004BE8B5 /* ImageCollectionViewController.swift */,
+				3A5F2B1B269096A8004BE8B5 /* FlickrImageCell.swift */,
+				3A5F2AF8269093EA004BE8B5 /* ImageDetailsViewController.swift */,
 				3A5F2AFD269093EB004BE8B5 /* Assets.xcassets */,
 				3A5F2AFF269093EB004BE8B5 /* LaunchScreen.storyboard */,
 				3A5F2B02269093EB004BE8B5 /* Info.plist */,
-				3A5F2B1826909693004BE8B5 /* ImageCollectionViewController.swift */,
-				3A5F2B1B269096A8004BE8B5 /* FlickrImageCell.swift */,
 			);
 			path = GaleryView2;
 			sourceTree = "<group>";
