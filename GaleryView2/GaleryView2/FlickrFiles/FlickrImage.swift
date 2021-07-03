@@ -1,14 +1,12 @@
 import UIKit
 
 class FlickrImage: Equatable {
-    
+    var thumbnail: UIImage?
+    var largeImage: UIImage?
     let photoID: String
     let farm: Int
     let server: String
     let secret: String
-    
-    var thumbnail: UIImage?
-    var largeImage: UIImage?
     
     init (photoID: String, farm: Int, server: String, secret: String) {
         self.photoID = photoID
@@ -21,7 +19,7 @@ class FlickrImage: Equatable {
         return URL(string: "https://farm\(farm).staticflickr.com/\(server)/\(photoID)_\(secret)_\(size).jpg")
     }
     
-    private enum Error: Swift.Error {
+    enum Error: Swift.Error {
         case invalidURL
         case noData
     }
